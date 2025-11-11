@@ -116,7 +116,7 @@ void task_SerialCheck(){
           } else if (ledSelection == 2) {
             led2Interval = newInterval;
           }
-          Serial.println(" nterval has been set.");
+          Serial.println("interval has been set.");
           Serial.println("-------------------------------------");
           Serial.println("Which LED do you want to change (1 or 2)?");
           inputState = 0; // Reset for new led selection
