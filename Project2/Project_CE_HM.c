@@ -7,19 +7,19 @@
 #define HIGH 1
 #endif
 
+
 // unsigned long for time
 unsigned long prevLed1Ms = 0;
 unsigned long prevLed2Ms = 0;
-unsigned long currentTime = millis(); //store times
 
 // function prototyping
 void task_LED1();
 void task_LED2();
 void task_SerialCheck();
-void (*taskList[])();
 
 // User Input Variables
 int ledSelection = 0; // Waiting for which LED to change
+unsigned long currentTime = 0; // Just declare it here
 
 // 0 = waiting for LED number
 // 1 = waiting for interval
@@ -116,7 +116,7 @@ void task_SerialCheck(){
           } else if (ledSelection == 2) {
             led2Interval = newInterval;
           }
-          Serial.println("interval has been set.");
+          Serial.println(" nterval has been set.");
           Serial.println("-------------------------------------");
           Serial.println("Which LED do you want to change (1 or 2)?");
           inputState = 0; // Reset for new led selection
@@ -137,6 +137,9 @@ void (*taskList[])() = {
 
 
 void loop() {
+
+  // Get the current time at the start of the loop
+  currentTime = millis();
 
   for( int i = 0; i < 3; i++){
     taskList[i]();
